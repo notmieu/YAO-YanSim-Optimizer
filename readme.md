@@ -2,7 +2,7 @@
   <img src="yaobanner.png" alt="YAO Banner">
 </p>
 
-# 🌸 YAO - YanSim Alpha Optimizer v1.2.2 🌸
+# 🌸 YAO - YanSim Alpha Optimizer v1.2 🌸
 
 **YAO** is a lightweight BepInEx plugin designed to fix Yandere Simulator's performance bottlenecks, specifically targeting CPU overhead and RAM bloat in crowded areas. 
 
