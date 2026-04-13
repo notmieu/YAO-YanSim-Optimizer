@@ -10,8 +10,8 @@
 
 ## ✨ Key Features
 
-* 🚀 **Crowd Stabilization:** Significant FPS boost near the fountain and hallways.
-  * *Tested: 30 FPS ➔ 50+ FPS*
+* 🚀 **Extreme FPS Boost:** Massive performance gain near the fountain and in hallways.
+  * *Tested: 30 FPS ➔ **70+ FPS***
 * 🧠 **Memory Management:** Reduces RAM usage and stutters via automated GC tuning and component caching.
 * 💃 **Adaptive Logic:** Throttles or disables StudentScript updates for NPCs outside your immediate area.
 * 👁️ **Optimized Vision:** Students no longer perform line-of-sight checks every single frame, drastically reducing CPU load.
@@ -25,6 +25,13 @@
 3. Drag and drop `YAO.dll` and `YAO.ini` into:
    `YandereSimulator/BepInEx/plugins/`
 4. Launch the game and enjoy the smoothness!
+
+---
+
+## 💬 Community & Support
+
+Join the official Discord server for updates, support, and feedback:
+🔗 [**Join YAO Discord Server**](https://discord.gg/nUt3SEfynS)
 
 ---
 
