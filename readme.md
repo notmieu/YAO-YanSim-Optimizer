@@ -21,7 +21,7 @@
 ## 🎀 Installation
 
 1. Ensure you have **BepInEx 5 (x64)** installed.
-2. Download the [latest release](https://github.com/TWOJA-NAZWA/YAO-Optimizer/releases).
+2. Download the [latest release](https://github.com/notmieu/YAO-YanSim-Optimizer/releases).
 3. Drag and drop `YAO.dll` and `YAO.ini` into:
    `YandereSimulator/BepInEx/plugins/`
 4. Launch the game and enjoy the smoothness!
