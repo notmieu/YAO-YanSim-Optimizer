@@ -51,5 +51,5 @@ Settings can be tweaked in `YAO.ini`:
 
 ---
 <p align="center">
-  <b>Version:</b> 1.2.2 | <b>Dev:</b> Mieu | <b>License:</b> MIT
+  <b>Version:</b> 1.3.1 | <b>Dev:</b> Mieu | <b>License:</b> MIT
 </p>
