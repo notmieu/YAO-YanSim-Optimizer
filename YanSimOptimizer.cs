@@ -1,108 +1,96 @@
 using BepInEx;
 using HarmonyLib;
 using System;
-using System.Reflection;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace YanSimOptimizer
 {
-    [BepInPlugin("com.yansimoptimizer.optimizer", "YanSim Optimizer", "1.3.5")]
+    [BepInPlugin("com.yansimoptimizer.optimizer", "YanSim Optimizer", "1.3.6")]
     public class YanSimOptimizationMod : BaseUnityPlugin
     {
+        private List<StudentScript> studentCache = new List<StudentScript>();
+        private float nextCacheUpdate = 0f;
+
         private void Awake()
         {
             var harmony = new Harmony("com.yansimoptimizer.patches");
             harmony.PatchAll();
-            Logger.LogInfo("YAO 1.3.5 initialized.");
+            Logger.LogInfo("YAO 1.3.6: Performance Update.");
         }
 
         private void Update()
         {
-            if (Time.frameCount % 60 == 0) 
+            if (Time.time > nextCacheUpdate)
             {
-                ProcessOptimization();
+                studentCache.Clear();
+                var allStudents = FindObjectsOfType<StudentScript>();
+                if (allStudents != null) studentCache.AddRange(allStudents);
+                nextCacheUpdate = Time.time + 5f;
             }
+
+            if (Time.frameCount % 30 == 0) RunOptimization();
         }
 
-        private void ProcessOptimization()
+        private void RunOptimization()
         {
-            var students = Resources.FindObjectsOfTypeAll<StudentScript>();
-            if (students == null) return;
+            if (studentCache.Count == 0) return;
 
-            foreach (var student in students)
+            foreach (var s in studentCache)
             {
-                if (student == null || !student.gameObject.activeInHierarchy) continue;
+                if (s == null || !s.gameObject.activeInHierarchy) continue;
 
-                if (student.Ragdoll != null && student.Ragdoll.enabled) 
+                ///   optymalizacja sie wylacza jesli uczen ragdoll
+                if (s.Ragdoll != null && s.Ragdoll.enabled) 
                 {
-                    if (student.CharacterAnimation != null) 
-                    {
-                        student.CharacterAnimation.enabled = true;
-                    }
+                    if (s.CharacterAnimation != null) s.CharacterAnimation.enabled = true;
+                    SetShadows(s, true);
+                    continue; 
+                }
+
+                ///  sprawdzanie procesu umierania
+                if (s.Dying || s.Attacked)
+                {
+                    s.enabled = true;
+                    if (s.CharacterAnimation != null) s.CharacterAnimation.enabled = true;
+                    SetShadows(s, true);
+                    s.CurrentDestination = s.transform; 
                     continue;
                 }
 
-                if (student.Dying || student.Attacked)
+                /// optymalizacja zywych
+                if (!s.Alive) continue;
+
+                s.enabled = true; 
+                
+                float dist = s.DistanceToPlayer;
+                bool isDistant = dist > 20f && !s.InEvent && !s.ClubActivity;
+
+                if (s.CharacterAnimation != null) 
                 {
-                    student.enabled = true;
-                    if (student.CharacterAnimation != null) 
-                    {
-                        student.CharacterAnimation.enabled = true;
-                    }
-                    
-                    student.CurrentDestination = student.transform;
-                    continue;
+                    s.CharacterAnimation.enabled = !isDistant;
                 }
 
-                if (!student.Alive) continue;
-
-                student.enabled = true;
-
-                if (student.DistanceToPlayer > 20f && !student.InEvent)
-                {
-                    if (student.CharacterAnimation != null) 
-                    {
-                        student.CharacterAnimation.enabled = false;
-                    }
-                }
-                else
-                {
-                    if (student.CharacterAnimation != null) 
-                    {
-                        student.CharacterAnimation.enabled = true;
-                    }
-                }
+                /// optymalizacja cieni na dystansie
+                SetShadows(s, dist < 40f);
             }
         }
 
-        private void DisablePathfindingComponent(StudentScript student)
+        private void SetShadows(StudentScript s, bool state)
         {
-            try 
+            var renderers = s.GetComponentsInChildren<SkinnedMeshRenderer>();
+            foreach (var r in renderers)
             {
-                FieldInfo pathfindingField = typeof(StudentScript).GetField("Pathfinding");
-                if (pathfindingField != null) 
-                {
-                    object pathfindingValue = pathfindingField.GetValue(student);
-                    if (pathfindingValue is MonoBehaviour component) 
-                    {
-                        component.enabled = false;
-                    }
-                }
-            } 
-            catch 
-            { 
-                // Ignore errors
+                r.shadowCastingMode = state ? ShadowCastingMode.On : ShadowCastingMode.Off;
             }
         }
 
         [HarmonyPatch(typeof(StudentScript), "UpdateVision")]
         [HarmonyPrefix]
-        public static bool UpdateVisionPrefix(StudentScript __instance)
+        public static bool UV_Prefix(StudentScript __instance)
         {
-            if (__instance.DistanceToPlayer > 20f && Time.frameCount % 10 != 0) 
-            {
-                return false;
-            }
+            if (__instance.DistanceToPlayer > 20f && Time.frameCount % 10 != 0) return false;
             return true;
         }
     }
