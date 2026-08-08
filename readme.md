@@ -1,55 +1,59 @@
-<p align="center">
-  <img src="yaobanner.png" alt="YAO Banner">
-</p>
+<div align="center">
 
-# 🌸 YAO - YanSim Alpha Optimizer v1.2 🌸
+![YAO Banner](yaobanner.png)
 
-**YAO** is a lightweight BepInEx plugin designed to fix Yandere Simulator's performance bottlenecks, specifically targeting CPU overhead and RAM bloat in crowded areas. 
+# YAO — YanSim Alpha Optimizer v1.2
 
----
+</div>
 
-## ✨ Key Features
-
-* 🚀 **Extreme FPS Boost:** Massive performance gain near the fountain and in hallways.
-  * *Tested: 30 FPS ➔ **70+ FPS***
-* 🧠 **Memory Management:** Reduces RAM usage and stutters via automated GC tuning and component caching.
-* 💃 **Adaptive Logic:** Throttles or disables StudentScript updates for NPCs outside your immediate area.
-* 👁️ **Optimized Vision:** Students no longer perform line-of-sight checks every single frame, drastically reducing CPU load.
+**YAO** is a lightweight BepInEx plugin built to fix Yandere Simulator's performance issues, specifically targeting CPU overhead and RAM bloat in crowded areas.
 
 ---
 
-## 🎀 Installation
+### Key Features
 
-1. Ensure you have **BepInEx 5 (x64)** installed.
+* **Extreme FPS Boost:** Significant performance gains near the fountain and in hallways (*Tested: 30 FPS ➔ 70+ FPS*).
+* **Memory Management:** Reduces RAM usage and stutters via automated GC tuning and component caching.
+* **Adaptive Logic:** Throttles or disables `StudentScript` updates for NPCs outside your immediate area.
+* **Optimized Vision:** Students no longer run line-of-sight checks on every single frame, drastically cutting CPU load.
+
+---
+
+### Installation
+
+1. Make sure you have **BepInEx 5 (x64)** installed.
 2. Download the [latest release](https://github.com/notmieu/YAO-YanSim-Optimizer/releases).
-3. Drag and drop `YAO.dll` and `YAO.ini` into:
+3. Drop `YAO.dll` and `YAO.ini` into:
    `YandereSimulator/BepInEx/plugins/`
 4. Launch the game and enjoy the smoothness!
 
 ---
 
-## 💬 Community & Support
+### Community & Support
 
-Join the official Discord server for updates, support, and feedback:
-🔗 [**Join YAO Discord Server**](https://discord.gg/nUt3SEfynS)
+Join the official Discord for updates, support, and feedback:  
+💬 [**Join the YAO Discord Server**](https://discord.gg/nUt3SEfynS)
 
 ---
 
-## ⚙️ Configuration
+### Configuration
 
-Settings can be tweaked in `YAO.ini`:
+You can tweak the settings in `YAO.ini`:
 * `MaxLogicDistance`: Distance (in meters) before student scripts are throttled (Default: **25.0**).
-* `UseAdaptiveLogic`: Toggle the main optimization engine.
+* `UseAdaptiveLogic`: Toggles the main optimization engine.
 
 ---
 
-## ❓ Troubleshooting
+### Troubleshooting
 
 * **Mod not loading?** Check the BepInEx console for `Optimizer: Done`.
-* **Students lagging/teleporting?** Increase `MaxLogicDistance` in the `.ini` file.
-* **Crashes?** Make sure you don't have conflicting older optimization mods installed.
+* **Students lagging or teleporting?** Try increasing `MaxLogicDistance` in your `.ini` file.
+* **Crashes?** Make sure you don't have conflicting/outdated optimization mods installed.
 
 ---
-<p align="center">
-  <b>Version:</b> 1.3.1 | <b>Dev:</b> Mieu | <b>License:</b> MIT
-</p>
+
+<div align="center">
+
+`Version: idk` • `Dev: Mieu` • `License: MIT`
+
+</div>
