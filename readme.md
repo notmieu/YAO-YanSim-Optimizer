@@ -4,7 +4,7 @@
 
 # YAO — Yandere Simulator Optimizer v2.1
 </div>
-*YAO** is a lightweight BepInEx optimization mod built to fix Yandere Simulator's severe performance issues, specifically targeting CPU overhead, bone transform loops, physics simulation, and RAM bloat in crowded areas.
+***YAO*** is a lightweight BepInEx optimization mod built to fix Yandere Simulator's severe performance issues, specifically targeting CPU overhead, bone transform loops, physics simulation, and RAM bloat in crowded areas.
 ---
 
 ### Key Features
