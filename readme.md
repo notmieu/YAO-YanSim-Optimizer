@@ -50,5 +50,5 @@ Settings can be customized in `BepInEx/plugins/YAO.ini`:
 ---
 
 <div align="center">
-`Version: v2.1` • `Dev: mieu` • `License: MIT`
+<code>Version: v2.1</code> • <code>Dev: mieu</code> • <code>License: MIT</code>
 </div>
