@@ -1,6 +1,6 @@
 <div align="center">
    
-![YAO Banner](yaobanner.png)
+![YAO Banner](banner.png)
 
 # YAO — Yandere Simulator Optimizer v2.1
 </div>
